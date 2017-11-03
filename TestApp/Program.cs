@@ -11,7 +11,9 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            Class1.PrintHelloWorld();
+            TextMagicClient textMagicClient = new TextMagicClient(Environment.GetEnvironmentVariable("TM_API_KEY"),
+                Environment.GetEnvironmentVariable("TM_USER_NAME"));
+            textMagicClient.SendMessage("Hello World");
             Console.ReadKey();
         }
     }
