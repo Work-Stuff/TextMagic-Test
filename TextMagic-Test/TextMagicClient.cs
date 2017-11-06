@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextMagic_Test.Requests;
+using TextMagic_Test.Responses;
 using TextmagicRest;
+using TextmagicRest.Model;
 
 namespace TextMagic_Test
 {
@@ -35,6 +38,18 @@ namespace TextMagic_Test
             {
                 Console.WriteLine("Message was not sent due to following exception: " + link.ClientException.Message);
             }
+        }
+
+        public GetAllMessagesResponse GetAllOutboundMessages(GetAllMessagesRequest request)
+        {
+            MessagesResult res = client.GetMessages(int.Parse(request.Page), int.Parse(request.Limit));
+            List<MessageResponse> messages = new List<MessageResponse>(res.Messages.Count);
+            foreach (Message msg in res.Messages)
+                messages.Add(new MessageResponse(msg.Id, msg.Receiver, msg.MessageTime, (int) msg.Status, msg.Text, null, msg.Charset, 
+                    msg.FirstName, msg.LastName, msg.CountryId, msg.Sender, msg.Price, msg.PartsCount));
+            GetAllMessagesResponse response = new GetAllMessagesResponse(res.Limit, messages, res.Page, res.PageCount, res.Success);
+            response.ResponseStatus = res.Success ? ResponseStatus._200 : ResponseStatus._500;
+            return response;
         }
 
     }

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.1.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -47,7 +50,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageDeliveryStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestMethod.cs" />
+    <Compile Include="Requests\GetAllMessagesRequest.cs" />
+    <Compile Include="Requests\IRequest.cs" />
+    <Compile Include="RequestStatus.cs" />
+    <Compile Include="ResponseStatus.cs" />
+    <Compile Include="Responses\GetAllMessagesResponse.cs" />
+    <Compile Include="Responses\MessageResponse.cs" />
+    <Compile Include="Responses\IResponse.cs" />
     <Compile Include="TextMagicClient.cs" />
   </ItemGroup>
   <ItemGroup>
